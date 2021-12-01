@@ -1,4 +1,33 @@
+type UserRating = nat32;
+type SubmitInfo = 
+ record {
+   essayID: nat32;
+   essayTitle: text;
+   essayTopic: text;
+   payTokens: nat;
+   reviewTimes: nat;
+   userEdu: text;
+   userId: text;
+   userName: text;
+   wordCount: text;
+ };
+type Name__1 = text;
+type Name = text;
+type ID = text;
+type Entry = 
+ record {
+   descript: Desc;
+   token: Balance;
+   userName: Name__1;
+   userRating: UserRating;
+ };
+type Desc = text;
+type Balance = nat32;
 service : {
-  greet: (text) -> (text) query;
-  test: () -> (text) query;
+  createEssayInfo: (ID, SubmitInfo) -> ();
+  createProfile: (Name, Entry) -> ();
+  getEssayInfo: (ID) -> (opt SubmitInfo);
+  getProfile: (Name) -> (opt Entry) query;
+  whoami: () -> (principal);
+  whoami1: () -> (principal) query;
 }
